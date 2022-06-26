@@ -1,0 +1,8 @@
+#### Short Description
+Supersig: a Multisig made with Apeworx, Privy, ENS and IPFS
+
+#### Long Description
+This project allows users to deploy a multisig wallet. The multisig is designed to keep all proposals and approvals on-chain while ensuring the actual proposed transaction remains hidden until it's executed, even from the multisig wallet provider service itself.  This is achieved by performing a keccak256-based commit reveal scheme on the work to be executed, and by storing commit data in the end to end encrypted Privy database. Approved users of the multisig can securely view the transaction parameters through Privy. Once enough approvals are reached, a user can send the full transaction parameters to the multisig and the transaction will execute if the hashes match (theoretically even the execution transaction could be hidden until mined by using a service like Flashbots or Eden Network).
+
+#### How It's Made
+This project uses ApeWorx for contract testing and deployment. ApeWorx made it easy to test vyper contracts with minimal context switching as both languages are pythonic. It uses IPFS, ENS, and IPNS to host, serve, and resolve the user interface, ensuring that multisignature interfaces will continue to be usable by nontechnical users in the face of censorship or network instability. The front end also uses Privy to store and read off-chain state while maintaining privacy about the content of multisig transactions. Deployments are made via POKT RPC endpoints to Rinkeby.
